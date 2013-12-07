@@ -43,10 +43,10 @@ imap <F4> <Esc>:NERDTree<CR>
 " evening murphy
 if has("win32")
     colorscheme desert
+    set background=dark
 endif
 
 if has('gui_running')
-    set background=light
     set guifont=Lucida_Console:h14:cANSI
 else
     set background=dark
@@ -59,12 +59,21 @@ endif
 
 " redefine a mapping learder
 let mapleader=","
-"Fast reloading of the .vimrc
-map <silent> <leader>ss :source ~/.vimrc<cr>
-"Fast editing of .vimrc
-map <silent> <leader>ee :e ~/.vimrc<cr>
-"When .vimrc is edited, reload it
-autocmd! bufwritepost .vimrc source ~/.vimrc
+if has("win32")
+    "Fast reloading of the .vimrc
+    map <silent> <leader>ss :source ~/_vimrc<cr>
+    "Fast editing of .vimrc
+    map <silent> <leader>ee :e ~/_vimrc<cr>
+    "When .vimrc is edited, reload it
+    autocmd! bufwritepost .vimrc source ~/_vimrc
+else 
+    "Fast reloading of the .vimrc
+    map <silent> <leader>ss :source ~/.vimrc<cr>
+    "Fast editing of .vimrc
+    map <silent> <leader>ee :e ~/.vimrc<cr>
+    "When .vimrc is edited, reload it
+    autocmd! bufwritepost .vimrc source ~/.vimrc
+endif
 
 set backspace=indent,eol,start
 
